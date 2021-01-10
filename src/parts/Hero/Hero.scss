@@ -1,0 +1,24 @@
+@import "../../assets/scss/mixin";
+@import "../../assets/scss/variables";
+
+.hero-title {
+  p {
+    @include text-large;
+    color: $placeHolderColor;
+  }
+  h1 {
+    @include display-large-bold;
+    color: $primaryColor;
+  }
+}
+
+.hero-image {
+  filter: drop-shadow(8px 16px 30px rgba(0, 0, 0, 0.3));
+  img {
+    object-fit: cover;
+    width: 107px;
+    height: 352.06px;
+    border-radius: 10px;
+    margin-right: 5px;
+  }
+}
