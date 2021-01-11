@@ -5,9 +5,7 @@ import Button from "../../components/Button/Button";
 
 import "./ComingMovies.scss";
 
-import upComing1 from "../../assets/images/up-coming1.png";
-import upComing2 from "../../assets/images/up-coming2.png";
-import upComing3 from "../../assets/images/up-coming3.png";
+import movieList from "../../dummy/movieList";
 
 class ComingMovies extends Component {
   state = {
@@ -23,80 +21,7 @@ class ComingMovies extends Component {
       "May",
       "June",
     ],
-    movieUpComing: [
-      {
-        id: 1,
-        title: "Black Widow",
-        genre: "Acion, Adventure, Sci-FI",
-        image: upComing1,
-        release: "June 28, 2017",
-        directed: "Jon Watss",
-        duration: "2 hours 13 minutes",
-        casts: "Tom Holland, Michael Keaton, Robert Downey Jr",
-        synopsis:
-          "Thrilled by his experience with the Avengers, Peter returns home, where he lives with his Aunt May, under the watchful eye of his new mentor Tony Stark, Peter tries to fall back into his normal daily routine - distracted by thoughts of proving himself to be more than just your friendly neighborhood Spider-Man - but when the Vulture emerges as a new villain, everything that Peter holds most important will be threatened. ",
-      },
-      {
-        id: 2,
-        title: "The Witches",
-        genre: "Adventure, Comedy, Family",
-        image: upComing2,
-        release: "June 28, 2017",
-        directed: "Jon Watss",
-        duration: "2 hours 13 minutes",
-        casts: "Tom Holland, Michael Keaton, Robert Downey Jr",
-        synopsis:
-          "Thrilled by his experience with the Avengers, Peter returns home, where he lives with his Aunt May, under the watchful eye of his new mentor Tony Stark, Peter tries to fall back into his normal daily routine - distracted by thoughts of proving himself to be more than just your friendly neighborhood Spider-Man - but when the Vulture emerges as a new villain, everything that Peter holds most important will be threatened. ",
-      },
-      {
-        id: 3,
-        title: "Tenet",
-        genre: "Acion, Sci-FI",
-        image: upComing3,
-        release: "June 28, 2017",
-        directed: "Jon Watss",
-        duration: "2 hours 13 minutes",
-        casts: "Tom Holland, Michael Keaton, Robert Downey Jr",
-        synopsis:
-          "Thrilled by his experience with the Avengers, Peter returns home, where he lives with his Aunt May, under the watchful eye of his new mentor Tony Stark, Peter tries to fall back into his normal daily routine - distracted by thoughts of proving himself to be more than just your friendly neighborhood Spider-Man - but when the Vulture emerges as a new villain, everything that Peter holds most important will be threatened. ",
-      },
-      {
-        id: 4,
-        title: "Black Widow",
-        genre: "Acion, Adventure, Sci-FI",
-        image: upComing1,
-        release: "June 28, 2017",
-        directed: "Jon Watss",
-        duration: "2 hours 13 minutes",
-        casts: "Tom Holland, Michael Keaton, Robert Downey Jr",
-        synopsis:
-          "Thrilled by his experience with the Avengers, Peter returns home, where he lives with his Aunt May, under the watchful eye of his new mentor Tony Stark, Peter tries to fall back into his normal daily routine - distracted by thoughts of proving himself to be more than just your friendly neighborhood Spider-Man - but when the Vulture emerges as a new villain, everything that Peter holds most important will be threatened. ",
-      },
-      {
-        id: 5,
-        title: "The Witches",
-        genre: "Adventure, Comedy, Family",
-        image: upComing2,
-        release: "June 28, 2017",
-        directed: "Jon Watss",
-        duration: "2 hours 13 minutes",
-        casts: "Tom Holland, Michael Keaton, Robert Downey Jr",
-        synopsis:
-          "Thrilled by his experience with the Avengers, Peter returns home, where he lives with his Aunt May, under the watchful eye of his new mentor Tony Stark, Peter tries to fall back into his normal daily routine - distracted by thoughts of proving himself to be more than just your friendly neighborhood Spider-Man - but when the Vulture emerges as a new villain, everything that Peter holds most important will be threatened. ",
-      },
-      {
-        id: 6,
-        title: "Tenet",
-        genre: "Acion, Sci-FI",
-        image: upComing3,
-        release: "June 28, 2017",
-        directed: "Jon Watss",
-        duration: "2 hours 13 minutes",
-        casts: "Tom Holland, Michael Keaton, Robert Downey Jr",
-        synopsis:
-          "Thrilled by his experience with the Avengers, Peter returns home, where he lives with his Aunt May, under the watchful eye of his new mentor Tony Stark, Peter tries to fall back into his normal daily routine - distracted by thoughts of proving himself to be more than just your friendly neighborhood Spider-Man - but when the Vulture emerges as a new villain, everything that Peter holds most important will be threatened. ",
-      },
-    ],
+    movieUpComing: movieList,
   };
   render() {
     return (
@@ -124,28 +49,30 @@ class ComingMovies extends Component {
             })}
           </div>
           <div className="movies-upcoming">
-            {this.state.movieUpComing.map((value, index) => {
-              return (
-                <div className="card-movies-upcoming" key={String(value.id)}>
-                  <img src={value.image} alt="" />
-                  <h1>{value.title}</h1>
-                  <p>{value.genre}</p>
-                  <Link
-                    to={{
-                      pathname: `/details/${value.id}`,
-                      state: {
-                        data: this.state.movieUpComing.filter(
-                          (data) => data.id === value.id
-                        ),
-                      },
-                    }}
-                    className="btn-details"
-                  >
-                    Details
-                  </Link>
-                </div>
-              );
-            })}
+            {this.state.movieUpComing
+              .filter((movie) => movie.status === "upcoming")
+              .map((value, index) => {
+                return (
+                  <div className="card-movies-upcoming" key={String(index)}>
+                    <img src={value.image} alt="" />
+                    <h1>{value.title}</h1>
+                    <p>{value.genre}</p>
+                    <Link
+                      to={{
+                        pathname: `/details/${value.id}`,
+                        state: {
+                          data: this.state.movieUpComing.filter(
+                            (data) => data.id === value.id
+                          ),
+                        },
+                      }}
+                      className="btn-details"
+                    >
+                      Details
+                    </Link>
+                  </div>
+                );
+              })}
           </div>
         </Container>
       </div>

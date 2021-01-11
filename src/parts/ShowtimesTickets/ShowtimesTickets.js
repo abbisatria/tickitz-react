@@ -7,110 +7,11 @@ import Button from "../../components/Button/Button";
 
 import "./ShowtimesTickets.scss";
 
-import ebv from "../../assets/images/ebv_id.png";
-import cineone21 from "../../assets/images/CineOne21.png";
-import hiflix from "../../assets/images/hiflix.png";
+import cinemaList from "../../dummy/cinemaList";
 
 class ShowtimesTickets extends Component {
   state = {
-    showtimesTickets: [
-      {
-        id: 1,
-        cinemas: "ebv.id",
-        street: "Whatever street No. 12, South Purwokerto",
-        image: ebv,
-        price: "$10.00",
-        showtimes: [
-          "08:30am",
-          "10:30pm",
-          "12:00pm",
-          "02:00pm",
-          "04:30pm",
-          "07:00pm",
-          "08:30pm",
-        ],
-      },
-      {
-        id: 2,
-        cinemas: "CineOne21",
-        street: "Downcare street  No. 21, East Purwokerto",
-        image: cineone21,
-        price: "$10.00",
-        showtimes: [
-          "08:30am",
-          "10:00pm",
-          "12:00pm",
-          "02:00pm",
-          "04:00pm",
-          "06:00pm",
-          "08:00pm",
-        ],
-      },
-      {
-        id: 3,
-        cinemas: "hiflix Cinema",
-        street: "Colonel street No. 2, East Purwokerto",
-        image: hiflix,
-        price: "$10.00",
-        showtimes: [
-          "08:30am",
-          "10:00am",
-          "12:00pm",
-          "02:00pm",
-          "04:00pm",
-          "06:00pm",
-          "08:00pm",
-        ],
-      },
-      {
-        id: 4,
-        cinemas: "ebv.id",
-        street: "Whatever street No. 12, South Purwokerto",
-        image: ebv,
-        price: "$10.00",
-        showtimes: [
-          "08:30am",
-          "10:00am",
-          "12:00pm",
-          "02:00pm",
-          "04:00pm",
-          "06:00pm",
-          "08:00pm",
-        ],
-      },
-      {
-        id: 5,
-        cinemas: "CineOne21",
-        street: "Downcare street  No. 21, East Purwokerto",
-        image: cineone21,
-        price: "$10.00",
-        showtimes: [
-          "08:30am",
-          "10:00am",
-          "12:00pm",
-          "02:00pm",
-          "04:00pm",
-          "06:00pm",
-          "08:00pm",
-        ],
-      },
-      {
-        id: 6,
-        cinemas: "hiflix Cinema",
-        street: "Colonel street No. 2, East Purwokerto",
-        image: hiflix,
-        price: "$10.00",
-        showtimes: [
-          "08:30am",
-          "10:00am",
-          "12:00pm",
-          "02:00pm",
-          "04:00pm",
-          "06:00pm",
-          "08:00pm",
-        ],
-      },
-    ],
+    showtimesTickets: cinemaList,
   };
   render() {
     return (
@@ -131,11 +32,11 @@ class ShowtimesTickets extends Component {
                         md={5}
                         className="d-flex align-items-center justify-content-center"
                       >
-                        <img src={value.image} alt={value.cinemas} />
+                        <img src={value.image} alt={value.name} />
                       </Col>
                       <Col md={7} className="pt-2 pt-md-0">
-                        <h3>{value.cinemas}</h3>
-                        <p>{value.street}</p>
+                        <h3>{value.name}</h3>
+                        <p>{value.address}</p>
                       </Col>
                     </Row>
                     <hr />
@@ -147,10 +48,13 @@ class ShowtimesTickets extends Component {
                               <label className="col" key={String(index)}>
                                 <input
                                   type="radio"
-                                  name="showtimes"
-                                  value={show}
+                                  name="time"
+                                  value={show.time}
+                                  disabled={
+                                    show.status === "sold" ? true : false
+                                  }
                                 />
-                                <span>{show}</span>
+                                <span>{show.time}</span>
                               </label>
                             );
                           })}
