@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import FormInputDate from "../../components/Form/FormInputDate/FormInputDate";
 import FormInputLocation from "../../components/Form/FormInputLocation/FormInputLocation";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Button from "../../components/Button/Button";
 
 import "./ShowtimesTickets.scss";
@@ -12,6 +12,14 @@ import cinemaList from "../../dummy/cinemaList";
 class ShowtimesTickets extends Component {
   state = {
     showtimesTickets: cinemaList,
+    time: "",
+  };
+  changeTime = (event) => {
+    // console.log({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
+  };
+  bookNow = (movieId, cinemaId, showtimesId) => {
+    this.props.history.push(`/order/${movieId}/${cinemaId}/${showtimesId}`);
   };
   render() {
     return (
@@ -40,7 +48,7 @@ class ShowtimesTickets extends Component {
                       </Col>
                     </Row>
                     <hr />
-                    <Form className="form-price">
+                    <div className="form-price">
                       <div className="showtimes mb-3">
                         <Row className="row-cols-4">
                           {value.showtimes.map((show, index) => {
@@ -49,10 +57,11 @@ class ShowtimesTickets extends Component {
                                 <input
                                   type="radio"
                                   name="time"
-                                  value={show.time}
+                                  value={show.id}
                                   disabled={
                                     show.status === "sold" ? true : false
                                   }
+                                  onChange={(event) => this.changeTime(event)}
                                 />
                                 <span>{show.time}</span>
                               </label>
@@ -62,17 +71,26 @@ class ShowtimesTickets extends Component {
                       </div>
                       <div className="d-flex justify-content-between mb-3">
                         <h6>Price</h6>
-                        <h3>{value.price}/seat</h3>
+                        <h3>${value.price}/seat</h3>
                       </div>
                       <div className="d-flex justify-content-between">
-                        <Button className="btn-primary book-now px-4 py-2">
+                        <Button
+                          onClick={() =>
+                            this.bookNow(
+                              this.props.movieId,
+                              value.id,
+                              this.state.time
+                            )
+                          }
+                          className="btn-primary book-now px-4 py-2"
+                        >
                           Book Now
                         </Button>
                         <Link to="/" className="btn-add-cart px-4 py-2">
                           Add to cart
                         </Link>
                       </div>
-                    </Form>
+                    </div>
                   </div>
                 </Col>
               );
@@ -89,4 +107,4 @@ class ShowtimesTickets extends Component {
   }
 }
 
-export default ShowtimesTickets;
+export default withRouter(ShowtimesTickets);

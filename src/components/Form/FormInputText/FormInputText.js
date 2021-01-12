@@ -13,6 +13,7 @@ class FormInputText extends Component {
           type={this.props.type}
           placeholder={this.props.placeholder}
           onChange={this.props.onChange}
+          defaultValue={this.props.defaultValue}
           required
         />
       </Form.Group>

@@ -4,14 +4,14 @@ import Footer from "../../parts/Footer/Footer";
 import MovieDetails from "../../parts/MovieDetails/MovieDetails";
 import ShowtimesTickets from "../../parts/ShowtimesTickets/ShowtimesTickets";
 
+import movieList from "../../dummy/movieList";
+
 class Details extends Component {
   state = {
-    details: [],
+    details: movieList.filter(
+      (item) => item.id === Number(this.props.match.params.id)
+    ),
   };
-  componentDidMount() {
-    const detail = this.props.location.state.data;
-    this.setState({ details: detail });
-  }
   render() {
     return (
       <>
@@ -31,7 +31,7 @@ class Details extends Component {
             />
           );
         })}
-        <ShowtimesTickets />
+        <ShowtimesTickets movieId={this.state.details[0].id} />
         <Footer />
       </>
     );

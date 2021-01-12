@@ -6,6 +6,9 @@ import SignUp from "./pages/Auth/SignUp/SignUp";
 import SignIn from "./pages/Auth/SignIn/SignIn";
 import ForgotPassword from "./pages/Auth/ForgotPassword/ForgotPassword";
 import Details from "./pages/Details/Details";
+import Order from "./pages/Order/Order";
+import Payment from "./pages/Payment/Payment";
+import Ticket from "./pages/Ticket/Ticket";
 
 class App extends Component {
   render() {
@@ -17,6 +20,18 @@ class App extends Component {
           <Route path="/sign-in" component={SignIn} />
           <Route path="/forgot-password" component={ForgotPassword} />
           <Route path="/details/:id" component={Details} />
+          <Route
+            path="/order/:movie_id/:cinema_id/:showtime_id"
+            component={Order}
+          />
+          <Route
+            path="/payment/:movie_id/:cinema_id/:showtime_id"
+            component={Payment}
+          />
+          <Route
+            path="/ticket/:movie_id/:cinema_id/:showtime_id"
+            component={Ticket}
+          />
         </Switch>
       </BrowserRouter>
     );

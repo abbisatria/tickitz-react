@@ -39,17 +39,7 @@ class NowShowing extends Component {
                       <p>{value.genre}</p>
                     </div>
                     <div className="button-movies">
-                      <Link
-                        to={{
-                          pathname: `/details/${value.id}`,
-                          state: {
-                            data: this.state.nowShowingList.filter(
-                              (data) => data.id === value.id
-                            ),
-                          },
-                        }}
-                        className="btn-details"
-                      >
+                      <Link to={`/details/${value.id}`} className="btn-details">
                         Details
                       </Link>
                       <br />

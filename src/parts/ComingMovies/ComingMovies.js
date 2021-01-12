@@ -57,17 +57,7 @@ class ComingMovies extends Component {
                     <img src={value.image} alt="" />
                     <h1>{value.title}</h1>
                     <p>{value.genre}</p>
-                    <Link
-                      to={{
-                        pathname: `/details/${value.id}`,
-                        state: {
-                          data: this.state.movieUpComing.filter(
-                            (data) => data.id === value.id
-                          ),
-                        },
-                      }}
-                      className="btn-details"
-                    >
+                    <Link to={`/details/${value.id}`} className="btn-details">
                       Details
                     </Link>
                   </div>
