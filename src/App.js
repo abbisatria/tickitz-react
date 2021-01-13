@@ -9,6 +9,8 @@ import Details from "./pages/Details/Details";
 import Order from "./pages/Order/Order";
 import Payment from "./pages/Payment/Payment";
 import Ticket from "./pages/Ticket/Ticket";
+import Profile from "./pages/Profile/Profile";
+import Admin from "./pages/Admin/Admin";
 
 class App extends Component {
   render() {
@@ -19,6 +21,8 @@ class App extends Component {
           <Route path="/sign-up" component={SignUp} />
           <Route path="/sign-in" component={SignIn} />
           <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/admin" component={Admin} />
           <Route path="/details/:id" component={Details} />
           <Route
             path="/order/:movie_id/:cinema_id/:showtime_id"

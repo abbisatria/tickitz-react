@@ -12,37 +12,26 @@ class Order extends Component {
     movie: movieList.filter(
       (item) => item.id === Number(this.props.match.params.movie_id)
     ),
-    cinemas: cinemaList.filter(
+    cinema: cinemaList.filter(
       (item) => item.id === Number(this.props.match.params.cinema_id)
     ),
+    date: this.props.location.state.data,
   };
-  showtime = this.state.cinemas[0].showtimes.filter(
+  showtime = this.state.cinema[0].showtimes.filter(
     (item) => item.id === Number(this.props.match.params.showtime_id)
   );
-  // componentDidMount() {
-  //   console.log(
-  //     cinemaList.filter(
-  //       (item) =>
-  //         item.id === Number(this.props.match.params.cinema_id) &&
-  //         item.showtimes.filter(
-  //           (show) => show.id === Number(this.props.match.params.showtime_id)
-  //         )
-  //     )
-  //   );
-  // }
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
     return (
       <>
         <Header />
-        {/* {console.log(
-          this.state.cinemas[0].showtimes.filter(
-            (item) => item.id === Number(this.props.match.params.showtime_id)
-          )
-        )} */}
         <OrderMovie
-          data={this.state.movie[0]}
-          value={this.state.cinemas[0]}
+          movie={this.state.movie[0]}
+          cinema={this.state.cinema[0]}
           time={this.showtime[0]}
+          date={this.state.date}
         />
         <Footer />
       </>

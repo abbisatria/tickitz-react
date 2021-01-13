@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Moment from "react-moment";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -43,11 +44,13 @@ class ProofOfPayment extends Component {
                     <Row>
                       <Col md={12} xs={7} className="order-1 order-lg-1">
                         <p>Movie</p>
-                        <h6>{this.props.data.title}</h6>
+                        <h6>{this.props.movie.title}</h6>
                       </Col>
                       <Col md={4} xs={7} className="mt-3 order-3 order-lg-2">
                         <p>Date</p>
-                        <h6>07 July</h6>
+                        <h6>
+                          <Moment format="D MMMM">{this.props.date}</Moment>
+                        </h6>
                       </Col>
                       <Col md={4} xs={5} className="mt-3 order-4 order-lg-3">
                         <p>Time</p>
@@ -68,14 +71,14 @@ class ProofOfPayment extends Component {
                       <Col md={4} className="d-none d-md-block mt-3 order-lg-7">
                         <p>Price</p>
                         <h5>
-                          ${this.props.seat.length * this.props.value.price}.00
+                          ${this.props.seat.length * this.props.cinema.price}.00
                         </h5>
                       </Col>
                       <Col xs={12} className="d-md-none d-sm-block order-7">
                         <div className="card-total">
                           <h5>Total</h5>
                           <h5>
-                            ${this.props.seat.length * this.props.value.price}
+                            ${this.props.seat.length * this.props.cinema.price}
                             .00
                           </h5>
                         </div>

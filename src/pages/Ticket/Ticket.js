@@ -11,12 +11,13 @@ class Ticket extends Component {
     movie: movieList.filter(
       (item) => item.id === Number(this.props.match.params.movie_id)
     ),
-    cinemas: cinemaList.filter(
+    cinema: cinemaList.filter(
       (item) => item.id === Number(this.props.match.params.cinema_id)
     ),
-    seat: this.props.location.state.data,
+    seat: this.props.location.state.data.seat,
+    date: this.props.location.state.data.date,
   };
-  showtime = this.state.cinemas[0].showtimes.filter(
+  showtime = this.state.cinema[0].showtimes.filter(
     (item) => item.id === Number(this.props.match.params.showtime_id)
   );
   componentDidMount() {
@@ -27,10 +28,11 @@ class Ticket extends Component {
       <>
         <Header />
         <ProofOfPayment
-          data={this.state.movie[0]}
-          value={this.state.cinemas[0]}
+          movie={this.state.movie[0]}
+          cinema={this.state.cinema[0]}
           time={this.showtime[0]}
           seat={this.state.seat}
+          date={this.state.date}
         />
         <Footer />
       </>

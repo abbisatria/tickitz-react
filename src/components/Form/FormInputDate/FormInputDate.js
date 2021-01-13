@@ -14,6 +14,7 @@ class FormInputDate extends Component {
             name={this.props.name}
             type="date"
             className="unstyled"
+            onChange={this.props.onChange}
           />
         </div>
       </Form.Group>

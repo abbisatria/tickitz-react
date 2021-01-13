@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Moment from "react-moment";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import Button from "../../components/Button/Button";
@@ -8,6 +9,7 @@ import "./OrderMovie.scss";
 class OrderMovie extends Component {
   state = {
     seat: [],
+    date: this.props.date,
   };
   componentDidUpdate() {
     console.log(this.state.seat);
@@ -39,7 +41,7 @@ class OrderMovie extends Component {
               <div className="movie-selected d-none d-md-block">
                 <h2>Movie Selected</h2>
                 <div className="card-movie-selected d-flex justify-content-between align-items-center">
-                  <h3>{this.props.data.title}</h3>
+                  <h3>{this.props.movie.title}</h3>
                   <Link to="/" className="btn-change-movie px-3 py-2">
                     Change movie
                   </Link>
@@ -851,8 +853,8 @@ class OrderMovie extends Component {
                       className="btn-primary py-3 w-100"
                       onClick={() =>
                         this.checkOut(
-                          this.props.data.id,
-                          this.props.value.id,
+                          this.props.movie.id,
+                          this.props.cinema.id,
                           this.props.time.id
                         )
                       }
@@ -868,21 +870,25 @@ class OrderMovie extends Component {
                 <h2>Order Info</h2>
                 <div className="card-order-info">
                   <div className="cinema">
-                    <img src={this.props.value.image} alt="" />
-                    <h2>{this.props.value.name}</h2>
+                    <img src={this.props.cinema.image} alt="" />
+                    <h2>{this.props.cinema.name}</h2>
                   </div>
                   <div className="detail-order">
                     <div className="d-flex justify-content-between">
                       <p>Movie selected</p>
-                      <h6>{this.props.data.title}</h6>
+                      <h6>{this.props.movie.title}</h6>
                     </div>
                     <div className="d-flex justify-content-between">
-                      <p>Tuesday, 07 July 2020</p>
+                      <p>
+                        <Moment format="dddd, D MMMM YYYY">
+                          {this.props.date}
+                        </Moment>
+                      </p>
                       <h6>{this.props.time.time}</h6>
                     </div>
                     <div className="d-flex justify-content-between">
                       <p>One ticket price</p>
-                      <h6>${this.props.value.price}</h6>
+                      <h6>${this.props.cinema.price}</h6>
                     </div>
                     <div className="d-flex justify-content-between">
                       <p>Seat choosed</p>
@@ -894,7 +900,7 @@ class OrderMovie extends Component {
                     <div className="d-flex justify-content-between">
                       <h4>Total Payment</h4>
                       <h3>
-                        ${this.state.seat.length * this.props.value.price}
+                        ${this.state.seat.length * this.props.cinema.price}
                       </h3>
                     </div>
                   </div>

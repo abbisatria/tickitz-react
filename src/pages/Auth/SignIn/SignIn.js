@@ -23,9 +23,12 @@ class SignIn extends Component {
       this.state.email === this.props.location.state.data.email &&
       this.state.password === this.props.location.state.data.password
     ) {
+      this.setState({ email: this.email } && { password: this.password });
       this.props.history.push("/?success=true", { data: this.state });
     } else {
-      this.props.history.push("/sign-in?success=false");
+      this.props.history.push("/sign-in?success=false", {
+        data: this.props.location.state.data,
+      });
     }
     console.log(this.state);
   };
@@ -34,9 +37,6 @@ class SignIn extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  componentDidMount() {
-    console.log(this.props.location.state);
-  }
   render() {
     return (
       <Container fluid>

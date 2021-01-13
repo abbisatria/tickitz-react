@@ -13,21 +13,30 @@ class ShowtimesTickets extends Component {
   state = {
     showtimesTickets: cinemaList,
     time: "",
+    date: "",
   };
   changeTime = (event) => {
     // console.log({ [event.target.name]: event.target.value });
     this.setState({ [event.target.name]: event.target.value });
   };
   bookNow = (movieId, cinemaId, showtimesId) => {
-    this.props.history.push(`/order/${movieId}/${cinemaId}/${showtimesId}`);
+    this.props.history.push(`/order/${movieId}/${cinemaId}/${showtimesId}`, {
+      data: this.state.date,
+    });
   };
+  // componentDidUpdate() {
+  //   console.log(this.props);
+  // }
   render() {
     return (
       <div className="showtimes-tickets">
         <Container>
           <h1>Showtimes and Tickets</h1>
           <Form className="form-showtimes my-5">
-            <FormInputDate name="date" />
+            <FormInputDate
+              name="date"
+              onChange={(event) => this.changeTime(event)}
+            />
             <FormInputLocation>Purwokerto</FormInputLocation>
           </Form>
           <Row>
