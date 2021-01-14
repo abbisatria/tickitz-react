@@ -12,7 +12,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./Header.scss";
 
 import logo from "../../assets/images/tickitz-logo.png";
-import profile from "../../assets/images/photo_profile.png";
+// import profile from "../../assets/images/photo_profile.png";
 
 class Header extends Component {
   render() {
@@ -56,12 +56,12 @@ class Header extends Component {
                     <i className="fa fa-search"></i>
                   </Button>
                 </Form>
-                {/* <Link to="/sign-up" className="sign-up-button py-2 px-4 ml-4">
+                <Link to="/sign-up" className="sign-up-button py-2 px-4 ml-4">
                   Sign Up
-                </Link> */}
-                <NavLink to="/profile" className="nav-link ml-4">
+                </Link>
+                {/* <NavLink to="/profile" className="nav-link ml-4">
                   <img src={profile} alt="profile" />
-                </NavLink>
+                </NavLink> */}
               </Nav>
             </Navbar.Collapse>
           </Navbar>

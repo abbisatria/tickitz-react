@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import upComing1 from "../../assets/images/up-coming1.png";
 import FormInputText from "../../components/Form/FormInputText/FormInputText";
 import FormInputLocation from "../../components/Form/FormInputLocation/FormInputLocation";
 import FormInputTime from "../../components/Form/FormInputTime/FormInputTime";
 import Button from "../../components/Button/Button";
+import BasedLocation from "../BasedLocation/BasedLocation";
+import BasedMovie from "../BasedMovie/BasedMovie";
 
 import ebvId from "../../assets/images/ebv_id.png";
 import cineOne21 from "../../assets/images/CineOne21.png";
@@ -209,6 +212,29 @@ lives with his Aunt May, | "
                 </Row>
               </div>
             </Col>
+          </Row>
+          <Row className="mt-5">
+            <Router>
+              <Col md={12}>
+                <h1>Sales Charts</h1>
+                <div className="card-sales-card">
+                  <Link to="/admin" className="link mr-5">
+                    Based on Movie
+                  </Link>
+                  <Link to="/admin/based-location" className="link">
+                    Based on Location
+                  </Link>
+                </div>
+                <Switch>
+                  <Route exact path="/admin">
+                    <BasedMovie />
+                  </Route>
+                  <Route exact path="/admin/based-location">
+                    <BasedLocation />
+                  </Route>
+                </Switch>
+              </Col>
+            </Router>
           </Row>
         </Container>
       </div>

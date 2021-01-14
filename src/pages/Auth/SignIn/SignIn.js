@@ -30,7 +30,6 @@ class SignIn extends Component {
         data: this.props.location.state.data,
       });
     }
-    console.log(this.state);
   };
 
   changeText = (event) => {

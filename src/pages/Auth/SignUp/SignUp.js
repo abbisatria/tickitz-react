@@ -24,7 +24,6 @@ class SignUp extends Component {
     } else {
       this.props.history.push("/sign-up?success=false");
     }
-    console.log(this.state);
   };
 
   changeText = (event) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderSignUp from "../../parts/Header/HeaderSignUp";
+import Header from "../../parts/Header/Header";
 import Hero from "../../parts/Hero/Hero";
 import NowShowing from "../../parts/NowShowing/NowShowing";
 import ComingMovies from "../../parts/ComingMovies/ComingMovies";
@@ -9,7 +9,7 @@ import Footer from "../../parts/Footer/Footer";
 export default function Home() {
   return (
     <>
-      <HeaderSignUp />
+      <Header />
       <Hero />
       <NowShowing />
       <ComingMovies />

@@ -11,11 +11,13 @@ import Payment from "./pages/Payment/Payment";
 import Ticket from "./pages/Ticket/Ticket";
 import Profile from "./pages/Profile/Profile";
 import Admin from "./pages/Admin/Admin";
+import ScrollToTop from "./ScrollToTop";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <ScrollToTop />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/sign-up" component={SignUp} />

@@ -20,9 +20,6 @@ class Order extends Component {
   showtime = this.state.cinema[0].showtimes.filter(
     (item) => item.id === Number(this.props.match.params.showtime_id)
   );
-  componentDidMount() {
-    console.log(this.props);
-  }
   render() {
     return (
       <>

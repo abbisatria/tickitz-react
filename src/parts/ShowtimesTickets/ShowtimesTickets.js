@@ -17,9 +17,6 @@ class ShowtimesTickets extends Component {
   changeTime = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  componentDidMount() {
-    console.log(this.props);
-  }
   render() {
     return (
       <div className="showtimes-tickets">
