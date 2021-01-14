@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Header from "../../parts/Header/Header";
+import HeaderSignUp from "../../parts/Header/HeaderSignUp";
 import Hero from "../../parts/Hero/Hero";
 import NowShowing from "../../parts/NowShowing/NowShowing";
 import ComingMovies from "../../parts/ComingMovies/ComingMovies";
@@ -10,7 +10,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <Header />
+        <HeaderSignUp />
         <Hero />
         <NowShowing />
         <ComingMovies />
