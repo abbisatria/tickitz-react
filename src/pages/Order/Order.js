@@ -16,14 +16,20 @@ class Order extends Component {
       (item) => item.id === Number(this.props.match.params.cinema_id)
     ),
     date: this.props.location.state.data,
+    user: "",
   };
   showtime = this.state.cinema[0].showtimes.filter(
     (item) => item.id === Number(this.props.match.params.showtime_id)
   );
+  componentDidMount() {
+    let data = localStorage.getItem("myData");
+    data = JSON.parse(data);
+    this.setState({ user: data.email });
+  }
   render() {
     return (
       <>
-        <Header />
+        <Header user={this.state.user} />
         <OrderMovie
           movie={this.state.movie[0]}
           cinema={this.state.cinema[0]}

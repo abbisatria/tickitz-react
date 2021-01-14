@@ -24,6 +24,7 @@ class SignIn extends Component {
       this.state.password === this.props.location.state.data.password
     ) {
       this.setState({ email: this.email } && { password: this.password });
+      localStorage.setItem("myData", JSON.stringify(this.state));
       this.props.history.push("/?success=true", { data: this.state });
     } else {
       this.props.history.push("/sign-in?success=false", {

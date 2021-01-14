@@ -17,14 +17,20 @@ class Payment extends Component {
     ),
     seat: this.props.location.state.data.seat,
     date: this.props.location.state.data.date,
+    user: "",
   };
   showtime = this.state.cinema[0].showtimes.filter(
     (item) => item.id === Number(this.props.match.params.showtime_id)
   );
+  componentDidMount() {
+    let data = localStorage.getItem("myData");
+    data = JSON.parse(data);
+    this.setState({ user: data.email });
+  }
   render() {
     return (
       <>
-        <Header />
+        <Header user={this.state.user} />
         <PaymentInfo
           movie={this.state.movie[0]}
           cinema={this.state.cinema[0]}

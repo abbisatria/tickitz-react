@@ -11,11 +11,17 @@ class Details extends Component {
     details: movieList.filter(
       (item) => item.id === Number(this.props.match.params.id)
     ),
+    user: "",
   };
+  componentDidMount() {
+    let data = localStorage.getItem("myData");
+    data = JSON.parse(data);
+    this.setState({ user: data.email });
+  }
   render() {
     return (
       <>
-        <Header />
+        <Header user={this.state.user} />
         {this.state.details.map((value, index) => {
           return (
             <MovieDetails
