@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Form } from "react-bootstrap";
 import FormInputDate from "../../components/Form/FormInputDate/FormInputDate";
 import FormInputLocation from "../../components/Form/FormInputLocation/FormInputLocation";
-import { Link, withRouter } from "react-router-dom";
-import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
+import CardShowTimes from "../../components/CardShowTimes/CardShowTimes";
 
 import "./ShowtimesTickets.scss";
 
@@ -12,21 +12,14 @@ import cinemaList from "../../dummy/cinemaList";
 class ShowtimesTickets extends Component {
   state = {
     showtimesTickets: cinemaList,
-    time: "",
     date: "",
   };
   changeTime = (event) => {
-    // console.log({ [event.target.name]: event.target.value });
     this.setState({ [event.target.name]: event.target.value });
   };
-  bookNow = (movieId, cinemaId, showtimesId) => {
-    this.props.history.push(`/order/${movieId}/${cinemaId}/${showtimesId}`, {
-      data: this.state.date,
-    });
-  };
-  // componentDidUpdate() {
-  //   console.log(this.props);
-  // }
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
     return (
       <div className="showtimes-tickets">
@@ -37,71 +30,17 @@ class ShowtimesTickets extends Component {
               name="date"
               onChange={(event) => this.changeTime(event)}
             />
-            <FormInputLocation>Purwokerto</FormInputLocation>
+            <FormInputLocation />
           </Form>
           <Row>
             {this.state.showtimesTickets.map((value, index) => {
               return (
-                <Col md={4} key={String(index)}>
-                  <div className="card-showtimes">
-                    <Row>
-                      <Col
-                        md={5}
-                        className="d-flex align-items-center justify-content-center"
-                      >
-                        <img src={value.image} alt={value.name} />
-                      </Col>
-                      <Col md={7} className="pt-2 pt-md-0">
-                        <h3>{value.name}</h3>
-                        <p>{value.address}</p>
-                      </Col>
-                    </Row>
-                    <hr />
-                    <div className="form-price">
-                      <div className="showtimes mb-3">
-                        <Row className="row-cols-4">
-                          {value.showtimes.map((show, index) => {
-                            return (
-                              <label className="col" key={String(index)}>
-                                <input
-                                  type="radio"
-                                  name="time"
-                                  value={show.id}
-                                  disabled={
-                                    show.status === "sold" ? true : false
-                                  }
-                                  onChange={(event) => this.changeTime(event)}
-                                />
-                                <span>{show.time}</span>
-                              </label>
-                            );
-                          })}
-                        </Row>
-                      </div>
-                      <div className="d-flex justify-content-between mb-3">
-                        <h6>Price</h6>
-                        <h3>${value.price}/seat</h3>
-                      </div>
-                      <div className="d-flex justify-content-between">
-                        <Button
-                          onClick={() =>
-                            this.bookNow(
-                              this.props.movieId,
-                              value.id,
-                              this.state.time
-                            )
-                          }
-                          className="btn-primary book-now px-4 py-2"
-                        >
-                          Book Now
-                        </Button>
-                        <Link to="/" className="btn-add-cart px-4 py-2">
-                          Add to cart
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
+                <CardShowTimes
+                  data={value}
+                  date={this.state.date}
+                  movieId={this.props.movieId}
+                  key={String(index)}
+                />
               );
             })}
           </Row>
@@ -116,4 +55,4 @@ class ShowtimesTickets extends Component {
   }
 }
 
-export default withRouter(ShowtimesTickets);
+export default ShowtimesTickets;

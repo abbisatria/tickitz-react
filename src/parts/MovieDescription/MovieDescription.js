@@ -3,10 +3,12 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import upComing1 from "../../assets/images/up-coming1.png";
 import FormInputText from "../../components/Form/FormInputText/FormInputText";
 import FormInputLocation from "../../components/Form/FormInputLocation/FormInputLocation";
-import FormInputDate from "../../components/Form/FormInputDate/FormInputDate";
+import FormInputTime from "../../components/Form/FormInputTime/FormInputTime";
 import Button from "../../components/Button/Button";
 
 import ebvId from "../../assets/images/ebv_id.png";
+import cineOne21 from "../../assets/images/CineOne21.png";
+import hiflix from "../../assets/images/hiflix.png";
 
 import "./MovieDescription.scss";
 
@@ -49,7 +51,16 @@ export default class MovieDescription extends Component {
                         <FormInputText type="date">Release date</FormInputText>
                       </Col>
                       <Col md={6}>
-                        <FormInputText type="time">Duration</FormInputText>
+                        <Form.Label>Duration (hour / minute)</Form.Label>
+                        <Form.Row>
+                          <Form.Group as={Col}>
+                            <Form.Control type="number" placeholder="0" />
+                          </Form.Group>
+
+                          <Form.Group as={Col}>
+                            <Form.Control type="number" placeholder="0" />
+                          </Form.Group>
+                        </Form.Row>
                       </Col>
                     </Row>
                   </Col>
@@ -92,7 +103,7 @@ lives with his Aunt May, | "
               <div className="card-premiere-location">
                 <Row>
                   <Col md={12}>
-                    <FormInputLocation>Purwokerto</FormInputLocation>
+                    <FormInputLocation />
                   </Col>
                 </Row>
                 <Row>
@@ -108,7 +119,15 @@ lives with his Aunt May, | "
                     <label>
                       <input type="radio" name="cinema" />
                       <div className="cinema">
-                        <img src={ebvId} alt="ebv id" />
+                        <img src={cineOne21} alt="cineOne21" />
+                      </div>
+                    </label>
+                  </Col>
+                  <Col md={4} xs={4}>
+                    <label>
+                      <input type="radio" name="cinema" />
+                      <div className="cinema">
+                        <img src={hiflix} alt="hiflix" />
                       </div>
                     </label>
                   </Col>
@@ -124,7 +143,15 @@ lives with his Aunt May, | "
                     <label>
                       <input type="radio" name="cinema" />
                       <div className="cinema">
-                        <img src={ebvId} alt="ebv id" />
+                        <img src={cineOne21} alt="cineOne21" />
+                      </div>
+                    </label>
+                  </Col>
+                  <Col md={4} xs={4}>
+                    <label>
+                      <input type="radio" name="cinema" />
+                      <div className="cinema">
+                        <img src={hiflix} alt="hiflix" />
                       </div>
                     </label>
                   </Col>
@@ -140,7 +167,7 @@ lives with his Aunt May, | "
                     <label>
                       <input type="radio" name="cinema" />
                       <div className="cinema">
-                        <img src={ebvId} alt="ebv id" />
+                        <img src={cineOne21} alt="cineOne21" />
                       </div>
                     </label>
                   </Col>
@@ -148,23 +175,7 @@ lives with his Aunt May, | "
                     <label>
                       <input type="radio" name="cinema" />
                       <div className="cinema">
-                        <img src={ebvId} alt="ebv id" />
-                      </div>
-                    </label>
-                  </Col>
-                  <Col md={4} xs={4}>
-                    <label>
-                      <input type="radio" name="cinema" />
-                      <div className="cinema">
-                        <img src={ebvId} alt="ebv id" />
-                      </div>
-                    </label>
-                  </Col>
-                  <Col md={4} xs={4}>
-                    <label>
-                      <input type="radio" name="cinema" />
-                      <div className="cinema">
-                        <img src={ebvId} alt="ebv id" />
+                        <img src={hiflix} alt="hiflix" />
                       </div>
                     </label>
                   </Col>
@@ -174,10 +185,10 @@ lives with his Aunt May, | "
               <div className="card-showtimes">
                 <Row>
                   <Col md={12}>
-                    <FormInputDate />
+                    <FormInputTime />
                   </Col>
                 </Row>
-                <Row className="mt-1">
+                <Row>
                   <Col md={3} xs={3}>
                     <Button className="outline-primary px-4">
                       <i className="fa fa-plus" aria-hidden="true"></i>

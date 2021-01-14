@@ -2,17 +2,17 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import calender from "../../../assets/icon/ic_calendar.png";
 
-import "./FormInputDate.scss";
+import "./FormInputTime.scss";
 
-export default function FormInputDate(props) {
+export default function FormInputTime(props) {
   const { name, onChange } = props;
   return (
     <Form.Group>
-      <div className="form-outline-date py-2">
+      <div className="form-outline-time py-2">
         <img src={calender} alt="icon-calender" />
         <Form.Control
           name={name}
-          type="date"
+          type="time"
           className="unstyled"
           onChange={onChange}
         />

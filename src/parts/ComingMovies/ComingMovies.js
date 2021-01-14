@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import CardMoviesUpcoming from "../../components/CardMoviesUpcoming/CardMoviesUpcoming";
 
 import "./ComingMovies.scss";
 
@@ -52,16 +53,7 @@ class ComingMovies extends Component {
             {this.state.movieUpComing
               .filter((movie) => movie.status === "upcoming")
               .map((value, index) => {
-                return (
-                  <div className="card-movies-upcoming" key={String(index)}>
-                    <img src={value.image} alt="" />
-                    <h1>{value.title}</h1>
-                    <p>{value.genre}</p>
-                    <Link to={`/details/${value.id}`} className="btn-details">
-                      Details
-                    </Link>
-                  </div>
-                );
+                return <CardMoviesUpcoming data={value} key={String(index)} />;
               })}
           </div>
         </Container>

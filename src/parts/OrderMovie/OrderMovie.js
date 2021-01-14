@@ -11,9 +11,12 @@ class OrderMovie extends Component {
     seat: [],
     date: this.props.date,
   };
-  componentDidUpdate() {
-    console.log(this.state.seat);
+  componentDidMount() {
+    console.log(this.props);
   }
+  // componentDidUpdate() {
+  //   console.log(this.state.seat);
+  // }
   selectSeat = (id) => {
     const { seat } = this.state;
     let newArray = [];

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button/Button";
+import CardNowShowing from "../../components/CardNowShowing/CardNowShowing";
 
 import movieList from "../../dummy/movieList";
 
@@ -31,23 +31,7 @@ class NowShowing extends Component {
             {this.state.nowShowingList
               .filter((movie) => movie.status === "realese")
               .map((value, index) => {
-                return (
-                  <div className="card-movies" key={String(index)}>
-                    <img src={value.image} alt={value.title} />
-                    <div className="title-movies">
-                      <h1>{value.title}</h1>
-                      <p>{value.genre}</p>
-                    </div>
-                    <div className="button-movies">
-                      <Link to={`/details/${value.id}`} className="btn-details">
-                        Details
-                      </Link>
-                      <br />
-                      <br />
-                      <Button className="btn-primary book-now">Book-now</Button>
-                    </div>
-                  </div>
-                );
+                return <CardNowShowing data={value} key={String(index)} />;
               })}
           </div>
         </Container>
