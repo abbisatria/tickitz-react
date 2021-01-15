@@ -35,7 +35,7 @@ class ComingMovies extends Component {
 
   viewAllMovie = () => {
     this.setState({
-      movieUpComing: movieList,
+      movieUpComing: movieList.filter((movie) => movie.status === "upcoming"),
     });
   };
 
