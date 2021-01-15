@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
 import upComing1 from "../../assets/images/up-coming1.png";
 import FormInputText from "../../components/Form/FormInputText/FormInputText";
 import FormInputLocation from "../../components/Form/FormInputLocation/FormInputLocation";
@@ -218,12 +223,17 @@ lives with his Aunt May, | "
               <Col md={12}>
                 <h1>Sales Charts</h1>
                 <div className="card-sales-card">
-                  <Link to="/admin" className="link mr-5">
+                  <NavLink
+                    exact
+                    to="/admin"
+                    className="link mr-5"
+                    activeClassName="active"
+                  >
                     Based on Movie
-                  </Link>
-                  <Link to="/admin/based-location" className="link">
+                  </NavLink>
+                  <NavLink exact to="/admin/based-location" className="link">
                     Based on Location
-                  </Link>
+                  </NavLink>
                 </div>
                 <Switch>
                   <Route exact path="/admin">

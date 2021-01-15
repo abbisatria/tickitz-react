@@ -9,7 +9,7 @@ import "./NowShowing.scss";
 
 class NowShowing extends Component {
   state = {
-    nowShowingList: movieList,
+    nowShowingList: movieList.filter((movie) => movie.status === "realese"),
   };
   render() {
     return (
@@ -28,11 +28,9 @@ class NowShowing extends Component {
         </Container>
         <Container>
           <div className="movies">
-            {this.state.nowShowingList
-              .filter((movie) => movie.status === "realese")
-              .map((value, index) => {
-                return <CardNowShowing data={value} key={String(index)} />;
-              })}
+            {this.state.nowShowingList.map((value, index) => {
+              return <CardNowShowing data={value} key={String(index)} />;
+            })}
           </div>
         </Container>
       </div>

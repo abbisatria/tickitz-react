@@ -16,7 +16,9 @@ class Details extends Component {
   componentDidMount() {
     let data = localStorage.getItem("myData");
     data = JSON.parse(data);
-    this.setState({ user: data.email });
+    if (data) {
+      this.setState({ user: data.email });
+    }
   }
   render() {
     return (

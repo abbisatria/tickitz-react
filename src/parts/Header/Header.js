@@ -7,7 +7,7 @@ import {
   Button,
   Container,
 } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 
 import "./Header.scss";
 
@@ -15,6 +15,15 @@ import logo from "../../assets/images/tickitz-logo.png";
 import profile from "../../assets/images/photo_profile.png";
 
 class Header extends Component {
+  signOut = () => {
+    localStorage.removeItem("myData");
+    this.props.history.push("/sign-in");
+  };
+
+  profilePage = () => {
+    this.props.history.push("/profile");
+  };
+
   render() {
     return (
       <Container>
@@ -57,9 +66,30 @@ class Header extends Component {
                   </Button>
                 </Form>
                 {this.props.user ? (
-                  <NavLink to="/profile" className="nav-link ml-4">
-                    <img src={profile} alt="profile" />
-                  </NavLink>
+                  <NavDropdown
+                    id="basic-nav-dropdown"
+                    className="nav-link ml-4"
+                    title={<img src={profile} alt="profile" />}
+                  >
+                    <NavDropdown.Item>
+                      <Button
+                        variant="link"
+                        className="px-0"
+                        onClick={this.profilePage}
+                      >
+                        Profile
+                      </Button>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Button
+                        variant="link"
+                        className="px-0"
+                        onClick={this.signOut}
+                      >
+                        Sign Out
+                      </Button>
+                    </NavDropdown.Item>
+                  </NavDropdown>
                 ) : (
                   <Link to="/sign-up" className="sign-up-button py-2 px-4 ml-4">
                     Sign Up
@@ -119,4 +149,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

@@ -22,8 +22,23 @@ class ComingMovies extends Component {
       "May",
       "June",
     ],
-    movieUpComing: movieList,
+    movieUpComing: movieList.filter((movie) => movie.status === "upcoming"),
   };
+
+  searhMovie = (month) => {
+    this.setState({
+      movieUpComing: this.state.movieUpComing.filter(
+        (value) => value.release.indexOf(month) !== -1
+      ),
+    });
+  };
+
+  viewAllMovie = () => {
+    this.setState({
+      movieUpComing: movieList,
+    });
+  };
+
   render() {
     return (
       <div className="upcoming-movies">
@@ -33,7 +48,11 @@ class ComingMovies extends Component {
               <h2>Upcoming Movies</h2>
             </Col>
             <Col className="d-flex justify-content-end">
-              <Link to="/" className="view-all">
+              <Link
+                to=""
+                className="view-all"
+                onClick={() => this.viewAllMovie()}
+              >
                 view all
               </Link>
             </Col>
@@ -43,18 +62,20 @@ class ComingMovies extends Component {
           <div className="month-movies">
             {this.state.month.map((value, index) => {
               return (
-                <Button className="outline-primary" key={String(index)}>
+                <Button
+                  className="outline-primary"
+                  key={String(index)}
+                  onClick={() => this.searhMovie(value)}
+                >
                   {value}
                 </Button>
               );
             })}
           </div>
           <div className="movies-upcoming">
-            {this.state.movieUpComing
-              .filter((movie) => movie.status === "upcoming")
-              .map((value, index) => {
-                return <CardMoviesUpcoming data={value} key={String(index)} />;
-              })}
+            {this.state.movieUpComing.map((value, index) => {
+              return <CardMoviesUpcoming data={value} key={String(index)} />;
+            })}
           </div>
         </Container>
       </div>

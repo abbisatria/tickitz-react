@@ -20,7 +20,8 @@ class SignUp extends Component {
   submitData = (event) => {
     event.preventDefault();
     if (this.state.email && this.state.password) {
-      this.props.history.push("/sign-in?success=true", { data: this.state });
+      localStorage.setItem("myData", JSON.stringify(this.state));
+      this.props.history.push("/sign-in?success=true");
     } else {
       this.props.history.push("/sign-up?success=false");
     }

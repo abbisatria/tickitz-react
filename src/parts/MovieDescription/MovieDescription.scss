@@ -94,7 +94,15 @@
       text-decoration: none;
     }
     .active {
-      border-bottom: 1px solid;
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 2px;
+        bottom: -35px;
+        background-color: $primaryColor;
+      }
     }
   }
 }

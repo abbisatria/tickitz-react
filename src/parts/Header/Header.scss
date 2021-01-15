@@ -82,3 +82,9 @@ hr {
     text-decoration: none;
   }
 }
+
+.nav-link {
+  .dropdown-toggle::after {
+    content: none;
+  }
+}

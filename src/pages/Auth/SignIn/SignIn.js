@@ -15,27 +15,30 @@ class SignIn extends Component {
   state = {
     email: "",
     password: "",
+    user: {},
   };
 
   submitData = (event) => {
     event.preventDefault();
     if (
-      this.state.email === this.props.location.state.data.email &&
-      this.state.password === this.props.location.state.data.password
+      this.state.email === this.state.user.email &&
+      this.state.password === this.state.user.password
     ) {
-      this.setState({ email: this.email } && { password: this.password });
-      localStorage.setItem("myData", JSON.stringify(this.state));
-      this.props.history.push("/?success=true", { data: this.state });
+      this.props.history.push("/?success=true");
     } else {
-      this.props.history.push("/sign-in?success=false", {
-        data: this.props.location.state.data,
-      });
+      this.props.history.push("/sign-in?success=false");
     }
   };
 
   changeText = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
+  componentDidMount() {
+    let data = localStorage.getItem("myData");
+    data = JSON.parse(data);
+    this.setState({ user: data });
+  }
 
   render() {
     return (
